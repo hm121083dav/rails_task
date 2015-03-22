@@ -1,0 +1,17 @@
+development:
+  database: task2_development
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: task2
+  password: pass
+
+test:
+  database: task2_test
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: task2
+  password: pass
