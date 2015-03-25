@@ -1,15 +1,18 @@
-class DashboardsController < ApplicationController
+class Admin::DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
 
   # GET /dashboards
   # GET /dashboards.json
   def index
     @dashboards = Ticket.all
+    render "/dashboards/index.html.haml"
+
   end
 
   # GET /dashboards/1
   # GET /dashboards/1.json
   def show
+    render "/dashboards/show.html.haml"
   end
 
   # GET /dashboards/new
