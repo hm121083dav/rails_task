@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   #get 'person/profile'
-  #resources :application
+  #resources :report
+  #get 'report'
 
   namespace :admin do
     resources :dashboards
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  #Загрузка контроллера по - УМОЛЧАНИЮ
   #root 'welcome#index'
   root 'report#index'
 
