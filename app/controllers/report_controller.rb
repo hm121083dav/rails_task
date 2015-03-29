@@ -1,12 +1,26 @@
 class  ReportController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   def index
-    #puts 'Report Work!'
 
-    #render text: 'Report Work_2';
+    # Передаем заговолок во вьюшку
+    @Tile = 'USER - HelpDesk'
 
-    render 'report';
+
+    render '/form.html.haml'
 
   end
+
+  #Просмотр заявки результата решени
+  def showRequest
+
+    # Передаем заговолок во вьюшку
+    @Tile = 'USER - HelpDesk (Просмотр результата решения)'
+
+
+
+    render '/report.html.haml'
+
+  end
+
 end
