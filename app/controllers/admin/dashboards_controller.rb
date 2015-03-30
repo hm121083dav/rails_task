@@ -1,77 +1,65 @@
-class Admin::DashboardsController < ApplicationController
-  before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
+class  Admin::DashboardsController < ApplicationController
+  before_action :authenticate_user!
 
-  # GET /dashboards
-  # GET /dashboards.json
+  #Заявки не в работе
   def index
-    @dashboards = Ticket.all
-    render "/dashboards/index.html.haml"
+
+    # Передаем заговолок во вьюшку
+    @Tile = 'ADMIN - HelpDesk (Заявки не в работе)'
+
+    #Получить заявки не в работе
+    #@allTickets = Ticket.where(user_id: nil)
+    @allTickets =  Ticket
+                       .joins('LEFT OUTER JOIN status ON status.id = tickets.status_id')
+                       .where(user_id: nil)
+                       .select('tickets.id, tickets.subject, status.title')
+
+    render '/admin/dashboards.html.haml'
 
   end
 
-  # GET /dashboards/1
-  # GET /dashboards/1.json
-  def show
-    render "/dashboards/show.html.haml"
+  #Просмотреть все заявки
+  def showAllTickets
+    #Получить все заявки
+    @allTickets = Ticket.all
   end
 
-  # GET /dashboards/new
-  def new
-    @dashboard = Ticket.new
+  #Просмотр заявок в работе
+  def showInWorkTickets
+
+    # Передаем заговолок во вьюшку
+    @Tile = 'ADMIN - HelpDesk (Мои заявки в работе)'
+
+    render '/admin/dashboard.html.haml'
+
   end
 
-  # GET /dashboards/1/edit
-  def edit
+  #Просмотр заявки
+  def showCurTicket(curTicket)
+
+    # Передаем заговолок во вьюшку
+    @Tile = 'ADMIN - HelpDesk (Просмотр текущей заявки)'
+
+
+    render '/viewticket.html.haml'
+
   end
 
-  # POST /dashboards
-  # POST /dashboards.json
-  def create
-    @dashboard = Ticket.new(dashboard_params)
-
-    respond_to do |format|
-      if @dashboard.save
-        format.html { redirect_to @dashboard, notice: 'Dashboard was successfully created.' }
-        format.json { render :show, status: :created, location: @dashboard }
-      else
-        format.html { render :new }
-        format.json { render json: @dashboard.errors, status: :unprocessable_entity }
-      end
-    end
+  #Взять в работу
+  def openRequest
+    render text: 'Взять в работу'
   end
 
-  # PATCH/PUT /dashboards/1
-  # PATCH/PUT /dashboards/1.json
-  def update
-    respond_to do |format|
-      if @dashboard.update(dashboard_params)
-        format.html { redirect_to @dashboard, notice: 'Dashboard was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dashboard }
-      else
-        format.html { render :edit }
-        format.json { render json: @dashboard.errors, status: :unprocessable_entity }
-      end
-    end
+  #Закрыть заявку
+  def closedRequest
+    render text: 'Закрыть заявку'
   end
 
-  # DELETE /dashboards/1
-  # DELETE /dashboards/1.json
-  def destroy
-    @dashboard.destroy
-    respond_to do |format|
-      format.html { redirect_to dashboards_url, notice: 'Dashboard was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+  #Открепить заявку
+  def untakeRequest
+    render text: 'Открепить заявку'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dashboard
-      @dashboard = Ticket.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dashboard_params
-      params[:dashboard]
-    end
 end

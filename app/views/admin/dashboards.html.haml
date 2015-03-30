@@ -1,0 +1,24 @@
+%html{ html_attrs('ru') }
+  %head
+    %title HelpDesk
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    = stylesheet_link_tag 'standard'
+  %body
+    #conteiner
+      #header
+        %h1 #{@Tile}
+        %hr
+      #content
+        - @allTickets.each_with_index do |item, index|
+          .request
+            %ul
+              %li #{index+1} #{link_to item.subject + ' (' +item.title + ')',  request.url() + '/showCurTicket/'+item.id.to_s}
+
+        %hr
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#{link_to 'Отобразить все заявки',  request.url() + '/showAllTickets'}
+      #footer
+        %p.copyright
+        Все права защищены ©
+        %strong SoftBistro+
+

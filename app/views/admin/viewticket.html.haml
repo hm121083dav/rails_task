@@ -1,0 +1,21 @@
+%html{ html_attrs('ru') }
+  %head
+    %title HelpDesk
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    = stylesheet_link_tag 'standard'
+  %body
+    #conteiner
+      #header
+        %h1 #{@Tile}
+        %hr
+      #content
+
+
+        %hr
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#{link_to 'Заявки на сегодня',  request.url() + '/index'}
+      #footer
+        %p.copyright
+        Все права защищены ©
+        %strong SoftBistro+
+

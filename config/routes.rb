@@ -23,8 +23,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboards
-    get '/admin', to: 'admin#index'
-    get '/admin', to: 'admin#showCurTicket'
+    get 'admin', to: 'dashboards#showCurTicket'
+ #   get '/admin', to: 'dashboards#showCurTicket'
 
   end
 
