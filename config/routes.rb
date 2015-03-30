@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboards
     get '/admin', to: 'admin#index'
-    get '/admin', to: 'admin#showInWorkRequests'
+    get '/admin', to: 'admin#showCurTicket'
 
   end
 

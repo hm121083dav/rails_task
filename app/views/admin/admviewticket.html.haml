@@ -9,14 +9,11 @@
         %h1 #{@Tile}
         %hr
       #content
-        - @allTickets.each_with_index do |item, index|
-          .request
-            %ul
-              %li #{index+1} #{link_to item.subject + ' (' +item.title + ')',  request.url() + '/showCurTicket/'+item.id.to_s}
+
 
         %hr
 
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#{link_to 'Отобразить все заявки',  request.url() + '/showAllTickets'}
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#{link_to 'Заявки на сегодня',  request.url() + '/index'}
       #footer
         %p.copyright
         Все права защищены ©
