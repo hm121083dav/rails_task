@@ -21,5 +21,25 @@ class  Admin::DashboardController < ApplicationController
     end
   end
 
+  def reassign_ticket
+    p 'reassign_ticket'
+  end
+
+  def start_working_ticket
+
+    p 'start_working_ticket'
+  end
+
+  def send_question_to_requester
+    p 'send_question_to_requester'
+  end
+
+  def finished_ticket
+    p 'finished_ticket'
+  end
+
+  def show_history_ticket
+    p 'show_history_ticket'
+  end
 
 end
