@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'report#index'
+  root 'dashboard#index'
 
   namespace :admin do
     root 'dashboard#index'
