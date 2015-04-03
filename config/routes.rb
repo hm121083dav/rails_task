@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
+    get '/assign_for_me_ticket/:id' => 'dashboard#assign_for_me_ticket', :via => :get, :as => :assign_for_me_ticket
   end
 
 

@@ -10,6 +10,16 @@ class  Admin::DashboardController < ApplicationController
     end
   end
 
+  #Назначение тикета сотруднику тех поддержки
+  def assign_for_me_ticket
+    ticket = Ticket.find_by_ticket_name(params['id'])
+    begin
+      ticket.update_attributes(status_id: 2, user_id: current_user.id)
+      redirect_to admin_root_path
+    rescue Exception => e
+      raise e
+    end
+  end
 
 
 end
