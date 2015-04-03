@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329123821) do
+ActiveRecord::Schema.define(version: 20150327143811) do
 
   create_table "logs", force: :cascade do |t|
     t.integer  "ticket_id",    limit: 4
@@ -22,18 +22,13 @@ ActiveRecord::Schema.define(version: 20150329123821) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "status", force: :cascade do |t|
-    t.string "title", limit: 255
-  end
-
   create_table "statuses", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", limit: 255
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "title",       limit: 255
-    t.string "short_title", limit: 255
+    t.string "name",       limit: 255
+    t.string "short_name", limit: 255
   end
 
   create_table "tickets", force: :cascade do |t|
