@@ -1,32 +1,11 @@
 Rails.application.routes.draw do
-  #Primer
-  #get 'person/profile'
-  #resources :report
-  #get 'report'
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  #Загрузка контроллера по - УМОЛЧАНИЮ
-  #root 'welcome#index'
-  #User REPORT --- DEFAULT
+  devise_for :users
   root 'report#index'
 
-  #GEM devise
-  devise_for :users
-
-  #User REPORT
-  get '/report/:id/:user_id', to: 'report#index'
-
-  #Admin
-
   namespace :admin do
-    resources :dashboards
-    get 'admin', to: 'dashboards#showCurTicket'
- #   get '/admin', to: 'dashboards#showCurTicket'
-
+    root 'dashboard#index'
   end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

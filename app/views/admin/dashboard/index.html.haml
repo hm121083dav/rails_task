@@ -1,0 +1,49 @@
+%h1 All  queries to request to support
+%table.table
+  %tr
+    %th= 'Requester'
+    %th= 'Team'
+    %th= 'Description'
+    %th= 'Status'
+    %th= 'Date request'
+    %th
+      .pull-right
+  - unless @tickets.blank?
+    - @tickets.each do |ticket|
+      %tr
+        %td
+          = "Name: #{ticket.customer_name}"
+          %br
+          = "Email: #{ticket.customer_email}"
+        %td
+          = "Team need to response: #{ticket.team.name}"
+        %td
+          = "Subject: #{ticket.subject}"
+          %br
+          = "Description: #{ticket.description}"
+        %td
+          = "Status: #{ticket.status.name}"
+        %td
+          = "Ticket ID:"
+          %br
+            = "#{ticket.ticket_name}"
+          %br
+          = "Date Create: #{ticket.created_at}"
+          %br
+          = "Date update: #{ticket.updated_at}"
+        %td
+          .pull-right
+            - if ticket.status_id == 1
+              = link_to 'Assign for me', admin_assign_for_me_ticket_path(ticket.ticket_name), class: 'btn btn btn-primary btn-sm'
+            -elsif ticket.status_id == 2
+              = link_to 'Reassign ticket', admin_reassign_ticket_path(ticket.ticket_name), data: { :confirm => 'Are you sure?' }, class: 'btn btn btn-success btn-sm'
+              = link_to 'Start working', admin_start_working_ticket_path(ticket.ticket_name), class: 'btn btn btn-primary btn-sm'
+              %br
+              = link_to 'Send question', admin_send_question_to_requester_path(ticket.ticket_name), class: 'btn btn btn-info btn-sm'
+            -elsif ticket.status_id == 3
+              = link_to 'Reassign ticket', admin_reassign_ticket_path(ticket.ticket_name), data: { :confirm => 'Are you sure?' }, class: 'btn btn btn-success btn-sm'
+              = link_to 'Finished worked', admin_finished_ticket_path(ticket.ticket_name), class: 'btn btn btn-warning btn-sm'
+              %br
+              = link_to 'Send question', admin_send_question_to_requester_path(ticket.ticket_name), class: 'btn btn btn-info btn-sm'
+            -elsif ticket.status_id == 4
+              = link_to 'Show history', admin_show_history_ticket_path(ticket.ticket_name), class: 'btn btn btn-default btn-sm'
