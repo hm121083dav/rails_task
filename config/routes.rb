@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'dashboard#index'
 
+  match '/tickets' => 'dashboard#tickets', :via => :post, :as => :tickets
+  get '/tickets/:id' => 'dashboard#show'
+
   namespace :admin do
     root 'dashboard#index'
     get '/assign_for_me_ticket/:id' => 'dashboard#assign_for_me_ticket', :via => :get, :as => :assign_for_me_ticket

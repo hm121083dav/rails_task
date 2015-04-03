@@ -1,0 +1,26 @@
+.panel-body
+  = form_for @tickets, html: {class: 'form-horizontal', role: 'form'} do |f|
+    - if @tickets.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@tickets.errors.count, "error")} prohibited this tickets from being saved:"
+        %ul
+          - @tickets.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group.field
+      = f.label :customer_name, 'Имя:'
+      = f.text_field :customer_name, class: 'form-control'
+    .form-group.field
+      = f.label :customer_email, 'E-mail: '
+      = f.text_field :customer_email, class: 'form-control'
+    .form-group.field
+      = f.label :subject, 'Тема: '
+      = f.text_field :subject, class: 'form-control'
+    .form-group.field
+      = f.label :team_id, 'Команда которой адресована заявка: '
+      = f.collection_select(:team_id, @teams.order(:name), :id, :name, {:prompt => 'Выберете команду техпотдержки'}, {class:'form-control'})
+    .form-group.field
+      = f.label :description, 'Описание заявки: '
+      = f.text_area :description, class: 'form-control', cols: 40, rows: 15
+    .form-group
+      = f.submit 'Подать заявку', class: 'form-control btn btn-primary submit-button'
