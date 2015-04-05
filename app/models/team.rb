@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  belongs_to :ticket
+  has_many :tickets
   validates :name, presence: true
   validates :short_name, presence: true
 end
