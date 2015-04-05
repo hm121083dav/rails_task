@@ -1,0 +1,21 @@
+.row
+  .col-sm-12.form-style
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title заявку
+      .panel-body
+        %table
+          %tr
+            %td Тикет:
+            %td= @ticket.ticket_name
+          %tr
+            %td Инициатор:
+            %td= @ticket.customer_name
+          %tr
+            %td Тема заявки :
+            %td= @ticket.subject
+          %tr
+            %td Проблема:
+            %td= @ticket.description
+
+  .clearfix

@@ -28,6 +28,13 @@ class DashboardController < ApplicationController
     end
   end
 
+  def show
+    @ticket = Ticket.find_by_ticket_name(params['id'])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
 
   #Данные с формы
