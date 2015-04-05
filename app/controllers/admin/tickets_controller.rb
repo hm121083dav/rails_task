@@ -13,7 +13,13 @@ class Admin::TicketsController < ApplicationController
 
   #Взять в заявку в работу
   def start_working_ticket
-
+    ticket = Ticket.find_by_ticket_name(params['id'])
+    begin
+      ticket.update_attributes(status_id: 3, user_id: current_user.id)
+      redirect_to admin_root_path
+    rescue Exception => e
+      raise e
+    end
   end
 
   #Закрвытие заявки
