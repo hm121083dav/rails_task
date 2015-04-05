@@ -2,7 +2,8 @@ class Admin::TicketsController < ApplicationController
 
   #Вывести все заявки и их текущее состояние
   def work_and_progress_ticket
-
+    @ticket = Ticket.find_by_ticket_name(params['id'])
+    @status = Status.all
   end
 
   #Прееназначить заявку другому сотруднику

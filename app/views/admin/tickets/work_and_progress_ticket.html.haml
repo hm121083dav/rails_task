@@ -1,0 +1,28 @@
+.container
+  .row.col-sm-12
+    %h1= "Ticket №: #{@ticket.ticket_name}"
+    %hr
+      
+      %tr
+        %th= 'Ticket info'
+      %tr
+        %td
+          = "Name: #{@ticket.customer_name}"
+          %br
+          = "Email: #{@ticket.customer_email}"
+          %br
+          = "Status: #{@ticket.status.name}"
+          %br
+          = "Team request:  #{@ticket.team.name}"
+          %br
+          = "Description: #{@ticket.description}"
+          %br
+          = "Subject: #{@ticket.subject}"
+.container
+  .row.col-sm-12
+    %table.table
+      %tr
+        %th= 'Ticket log statistic'
+      %tr
+        %td
+
