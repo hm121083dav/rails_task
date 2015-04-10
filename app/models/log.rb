@@ -3,15 +3,11 @@ class Log < ActiveRecord::Base
   belongs_to :status
   validates :solution_description, presence: true
 
-  def status
-    Status.find_by_id(self.status_id).name
-  end
-
   def assigned_user
-    User.find_by_id(self.assigned_id).full_name
+    User.find_by_id(assigned_id).full_name
   end
 
   def committer
-    User.find_by_id(self.committer_id).full_name
+    User.find_by_id(committer_id).full_name
   end
 end

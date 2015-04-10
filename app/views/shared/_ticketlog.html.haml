@@ -15,7 +15,7 @@
       - logs.each do |log|
         %tr
           %td{style: 'width: 120px;'}= "#{log.updated_at}"
-          %td{style: 'width: 60px;'}= "#{log.status}"
+          %td{style: 'width: 60px;'}= "#{log.status.name}"
           %td{style: 'width: 160px;'}= "#{log.assigned_user}"
           %td= "#{log.solution_description}"
           %td{style: 'width: 160px;'}= "#{log.committer}"
