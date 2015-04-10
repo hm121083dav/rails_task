@@ -20,8 +20,8 @@ class DashboardController < ApplicationController
 
     respond_to do |format|
       if @tickets.save
-        SupportMailer.tickets_create(@tickets).deliver_now
-        format.html { redirect_to root_path, notice: 'Ticket was successfully created.' }
+        # SupportMailer.tickets_create(@tickets).deliver_now
+        format.html { redirect_to root_path, notice: 'Заявка была успешно сформирована.' }
       else
         format.html { render action: 'index' }
       end
@@ -30,6 +30,7 @@ class DashboardController < ApplicationController
 
   def show
     @ticket = Ticket.find_by_ticket_name(params['id'])
+    @logs = Log.all.where('ticket_id = ?', @ticket.id)
     respond_to do |format|
       format.html
     end

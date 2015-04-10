@@ -11,5 +11,11 @@
       .col-lg-12
         .page-header
       .col-xs-12.col-sm-12
+        %div.menu
+          %span.m= @status_id==1 ? 'Новые_неназначенные_заявки' : link_to('Новые_неназначенные_заявки', admin_root_path+'/1', class: 'glyphicon glyphicon-cog')
+          %span.m= @status_id==2 ? 'Открытые_заявки' : link_to('Открытые_заявки', admin_root_path+'/2', class: 'glyphicon glyphicon-cog')
+          %span.m= @status_id==3 ? 'Заявки_в_обработке' : link_to('Заявки_в_обработке', admin_root_path+'/3', class: 'glyphicon glyphicon-cog')
+          %span.m= @status_id==4 ? 'Закрытые_заявки' : link_to('Закрытые_заявки', admin_root_path+'/4', class: 'glyphicon glyphicon-cog')
+        %div{style: 'clear: both;'}
         = yield
         = yield :scripts

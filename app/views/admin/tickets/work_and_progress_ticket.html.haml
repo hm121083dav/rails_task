@@ -1,28 +1,39 @@
 .container
   .row.col-sm-12
-    %h1= "Ticket №: #{@ticket.ticket_name}"
-    %hr
-      = render 'admin/logs/new'
+    %h1= "Заявка №: #{@ticket.ticket_name}"
+
+    %table.myTable
       %tr
-        %th= 'Ticket info'
+        %td.tdname
+          %strong= "Тема: "
+        %td= "#{@ticket.subject}"
       %tr
-        %td
-          = "Name: #{@ticket.customer_name}"
-          %br
-          = "Email: #{@ticket.customer_email}"
-          %br
-          = "Status: #{@ticket.status.name}"
-          %br
-          = "Team request:  #{@ticket.team.name}"
-          %br
-          = "Description: #{@ticket.description}"
-          %br
-          = "Subject: #{@ticket.subject}"
+        %td.tdname
+          %strong= "Автор заявки: "
+        %td= "#{@ticket.customer_name}"
+      %tr
+        %td.tdname
+          %strong= "Email: "
+        %td= "#{@ticket.customer_email}"
+      %tr
+        %td.tdname
+          %strong= "Статус: "
+        %td= "#{@ticket.status.name}"
+      %tr
+        %td.tdname
+          %strong= "Команда: "
+        %td= "#{@ticket.team.name}"
+      %tr
+        %td.tdname
+          %strong= "Исполнитель: "
+        %td= "#{@ticket.user.full_name}"
+      %tr
+        %td.tdname
+          %strong= "Содержание: "
+        %td= "#{@ticket.description}"
+
+      = render 'admin/tickets/form'
+
 .container
   .row.col-sm-12
-    %table.table
-      %tr
-        %th= 'Ticket log statistic'
-      %tr
-        %td
-
+    = render 'shared/ticketlog', {logs: @logs}

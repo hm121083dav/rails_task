@@ -1,0 +1,21 @@
+- unless logs.blank?
+  %p= 'Статистика по заявке'
+  %table.myTable
+    %tr
+      %td{style: 'width: 120px;'}
+        %strong= 'Дата'
+      %td{style: 'width: 60px;'}
+        %strong= 'Статус'
+      %td{style: 'width: 160px;'}
+        %strong= 'Назначена'
+      %td
+        %strong= 'Ответ пользователю'
+      %td{style: 'width: 160px;'}
+        %strong= 'Исполнитель'
+      - logs.each do |log|
+        %tr
+          %td{style: 'width: 120px;'}= "#{log.updated_at}"
+          %td{style: 'width: 60px;'}= "#{log.status}"
+          %td{style: 'width: 160px;'}= "#{log.assigned_user}"
+          %td= "#{log.solution_description}"
+          %td{style: 'width: 160px;'}= "#{log.committer}"

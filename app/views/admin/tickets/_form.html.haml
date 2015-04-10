@@ -1,0 +1,14 @@
+.panel-body
+  = form_for :reassign_ticket, url: admin_reassign_ticket_url, html: {class: 'form-horizontal', role: 'form'} do |f|
+
+    .form-group
+      = label_tag :status_id, 'Изменить статус заявки'
+      = f.collection_select(:status_id, @status.order(:id), :id, :name, {:selected => @ticket.status_id} ,  {class:'form-control'})
+      = label_tag :status_id, 'Переназначить на'
+      = f.collection_select(:user_id, @users.order(:surname), :id, :full_name, {:selected => @ticket.user_id} ,  {class:'form-control'})
+      = label_tag :solution_description, 'Сообщение пользователю'
+      = f.text_area :solution_description, class: 'form-control', cols: 20, rows: 7
+      = hidden_field_tag :ticket_id, @ticket.id
+      = hidden_field_tag :committer_id, current_user.id
+    .form-group
+      = f.submit 'Отправить', class: 'form-control btn btn-primary submit-button'

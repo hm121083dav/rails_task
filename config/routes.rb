@@ -7,11 +7,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
+    get '/:id' => 'dashboard#index', :via => :get
     resource :logs
     resource :tickets
     get '/work_and_progress_ticket/:id' => 'tickets#work_and_progress_ticket', :via => :get, :as => :work_and_progress_ticket
     get '/assign_for_me_ticket/:id' => 'dashboard#assign_for_me_ticket', :via => :get, :as => :assign_for_me_ticket
-    get '/reassign_ticket/:id' => 'dashboard#reassign_ticket', :via => :get, :as => :reassign_ticket
+    match '/reassign_ticket' => 'tickets#reassign_ticket', :via => :post, :as => :reassign_ticket
+    match '/find_ticket' => 'tickets#find_ticket', :via => :post, :as => :find_ticket
     get '/start_working_ticket/:id' => 'tickets#start_working_ticket', :via => :get, :as => :start_working_ticket
     get '/send_question_to_requester/:id' => 'dashboard#send_question_to_requester', :via => :get, :as => :send_question_to_requester
     get '/finished_ticket/:id' => 'tickets#finished_ticket', :via => :get, :as => :finished_ticket

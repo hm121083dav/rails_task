@@ -2,7 +2,7 @@
   = form_for @tickets, html: {class: 'form-horizontal', role: 'form'} do |f|
     - if @tickets.errors.any?
       #error_explanation
-        %h2= "#{pluralize(@tickets.errors.count, "error")} prohibited this tickets from being saved:"
+        %h2= "#{pluralize(@tickets.errors.count, "error")} Заявка не может быть создана:"
         %ul
           - @tickets.errors.full_messages.each do |msg|
             %li= msg
@@ -18,7 +18,7 @@
       = f.text_field :subject, class: 'form-control'
     .form-group.field
       = f.label :team_id, 'Команда которой адресована заявка: '
-      = f.collection_select(:team_id, @teams.order(:name), :id, :name, {:prompt => 'Выберете команду техпотдержки'}, {class:'form-control'})
+      = f.collection_select(:team_id, @teams.order(:name), :id, :name, {:prompt => 'Выберите команду техподдержки'}, {class:'form-control'})
     .form-group.field
       = f.label :description, 'Описание заявки: '
       = f.text_area :description, class: 'form-control', cols: 40, rows: 15

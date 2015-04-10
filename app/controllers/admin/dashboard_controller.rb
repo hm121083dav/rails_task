@@ -3,8 +3,9 @@ class  Admin::DashboardController < ApplicationController
 
   #Админ часть.Загрузка стартовой страници
   def index
-    @tickets = Ticket.all
-
+    @status_id = params['id'].blank? ? 1 : params['id'].to_i
+    @tickets = Ticket.all.where('status_id = ?',@status_id)
+    @statuses = Status.all
     respond_to do |format|
       format.html
     end

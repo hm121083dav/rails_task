@@ -1,0 +1,5 @@
+= form_for :find_ticket, url: admin_find_ticket_url, html: {class: 'search_form', role: 'form'} do |f|
+  .form-group
+    = label_tag :search, 'Поиск заявки'
+    = f.text_field :search
+    = f.submit 'Искать', class: ' btn btn-primary submit-button'

@@ -3,9 +3,8 @@
     %button{type: "button", class: 'navbar-toggle', data: {toggle: 'collapse', target:'.navbar-collapse'}}
       %span.sr-only Toggle navigation
       %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-    = link_to 'Task2', admin_root_path, class: 'navbar-brand'
-    = link_to ' Logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-off'
-    = current_user.email
-    -#= link_to ' Edit profile ', edit_user_registration_path, class: 'glyphicon glyphicon-cog'
+    %span= link_to 'На главную ', admin_root_path, class: 'navbar-brand'
+    %strong.mn= "Администратор: #{current_user.full_name}"
+    %br
+    %span.mn= link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-off'
+    = render 'admin/dashboard/form'

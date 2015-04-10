@@ -2,3 +2,61 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+.menu
+{
+    float:left;
+    margin-top: 45px;
+}
+
+.m
+{
+  margin-right: 30px;
+  font-size: 14pt;
+}
+
+/*Стиль таблицы*/
+.myTable
+{
+    border: 1px solid #2E2F30;
+    padding: 5px;
+    margin: 5px;
+}
+
+.myTable tr td
+{
+    border: 1px solid #2E2F30;
+    padding: 15px;
+    background: #EFEFEF;
+}
+
+.myTable .tdname
+{
+    width: 120px;
+}
+
+/*Дополнительно*/
+.redColor
+{
+    color: red;
+}
+
+.form-style {
+    margin-top: 15px;
+}
+
+.search_form
+{
+    display: inline-flex;
+    margin-left: 40%;
+}
+.search_form input[type='text']
+{
+    width:500px;
+}
+
+.mn
+{
+    display: inline-flex;
+    margin-top: 10px;
+}
