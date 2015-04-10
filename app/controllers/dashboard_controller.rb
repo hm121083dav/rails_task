@@ -12,11 +12,12 @@ class DashboardController < ApplicationController
 
   #Добавление заявки пользователем в тех поддержку
   def tickets
-    @tickets = Ticket.new(ticket_params)
+    form_params = params.require(:ticket).permit(:customer_name, :customer_email, :team_id, :subject, :description)
+    @tickets = Ticket.new(form_params)
     @teams = Team.all
 
     @tickets.status_id=1
-    @tickets.ticket_name="#{@teams.find(ticket_params['team_id'])[:short_name]}-#{SecureRandom.hex}" if ticket_params['team_id']
+    @tickets.ticket_name="#{@teams.find(form_params['team_id'])[:short_name]}-#{SecureRandom.hex}" if form_params['team_id']
 
     respond_to do |format|
       if @tickets.save
@@ -34,13 +35,6 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
     end
-  end
-
-  private
-
-  #Данные с формы
-  def ticket_params
-    params.require(:ticket).permit(:customer_name, :customer_email, :team_id, :subject, :description)
   end
 
 end
