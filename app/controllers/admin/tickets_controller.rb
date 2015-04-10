@@ -11,16 +11,16 @@ class Admin::TicketsController < ApplicationController
   #Изменить параметры тикета (статус и/или кому назначен)
   def reassign_ticket
     ticket_params = params.require(:reassign_ticket).permit(:solution_description, :status_id, :user_id)
-    @ticket = Ticket.find_by_id(params[:ticket_id])
+    ticket = Ticket.find_by_id(params[:ticket_id])
     begin
-      @ticket.update_attributes(status_id: ticket_params['status_id'], user_id: ticket_params['user_id'])
-      @log = Log.new
-      @log.ticket_id= params[:ticket_id]
-      @log.status_id= ticket_params['status_id']
-      @log.assigned_id= ticket_params['user_id']
-      @log.committer_id= params[:committer_id]
-      @log.solution_description= ticket_params['solution_description']
-      @log.save
+      ticket.update_attributes(status_id: ticket_params['status_id'], user_id: ticket_params['user_id'])
+      log = Log.new
+      log.ticket_id= params[:ticket_id]
+      log.status_id= ticket_params['status_id']
+      log.assigned_id= ticket_params['user_id']
+      log.committer_id= params[:committer_id]
+      log.solution_description= ticket_params['solution_description']
+      log.save
       #SupportMailer.change(@ticket).deliver_now if @log.save
       redirect_to admin_root_path + '/' + ticket_params['status_id']
     rescue Exception => e
@@ -29,10 +29,10 @@ class Admin::TicketsController < ApplicationController
   end
 
   def find_ticket
-    @srch = params.require(:find_ticket)[:search]
+    srch = params.require(:find_ticket)[:search]
     # render text: "#{srch}"
     # @tickets = Ticket.where("ticket_name like :name or subject like :subject", {:name => srch, :subject => srch})
-    @tickets = Ticket.where("ticket_name LIKE :a OR subject LIKE :b", {:a => @srch, :b => @srch})
+    @tickets = Ticket.where("ticket_name LIKE :a OR subject LIKE :b", {:a => srch, :b => srch})
     @status = Status.all
     @users = User.all
   end
