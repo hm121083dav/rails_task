@@ -6,7 +6,6 @@
   %body
     %h1= "Уважаемый #{@ticket.customer_name}!"
     %p= "По Вашей заявке #{@ticket.ticket_name} Вам было отправлено сообщение: "
-    - unless @log.blank?
-      %p= "#{@log.solution_description}"
+    %p= "#{@log.solution_description}"
     %p= "Вы можете посмотреть статус заявки и прочитать текст сообщения по следующей ссылке: #{link_to(root_url, { controller: 'dashboard', action: 'show', id: @ticket.ticket_name })} %>"
     %p= 'Спасибо за обращение в нашу службу техподдержки!'

@@ -21,8 +21,10 @@
               %p= "Имя: #{ticket.customer_name}"
               %p= "Email: #{ticket.customer_email}"
             %td
-              %p= "Команда: #{ticket.team.name}"
-              %p= "Исполнитель: #{ticket.user.full_name}"
+              - unless ticket.team_id.blank?
+                %p= "Команда: #{ticket.team.name}"
+              - unless ticket.user_id.blank?
+                %p= "Исполнитель: #{ticket.user.full_name}"
             %td
               = "#{ticket.status.name}"
             %td

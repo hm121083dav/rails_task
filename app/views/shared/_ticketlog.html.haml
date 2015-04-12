@@ -17,5 +17,8 @@
           %td{style: 'width: 120px;'}= "#{log.updated_at}"
           %td{style: 'width: 60px;'}= "#{log.status.name}"
           %td{style: 'width: 160px;'}= "#{log.assigned_user}"
-          %td= "#{log.solution_description}"
+          - if log.solution_description.blank?
+            %td= "Состояние заявки было изменено"
+          - else
+            %td= "#{log.solution_description}"
           %td{style: 'width: 160px;'}= "#{log.committer}"

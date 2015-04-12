@@ -1,6 +1,5 @@
 .panel-body
   = form_for :reassign_ticket, url: admin_reassign_ticket_url, html: {class: 'form-horizontal', role: 'form'} do |f|
-
     .form-group
       = label_tag :status_id, 'Изменить статус заявки'
       = f.collection_select(:status_id, @status.order(:id), :id, :name, {:selected => @ticket.status_id} ,  {class:'form-control'})

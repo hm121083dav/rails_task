@@ -20,13 +20,15 @@
           %strong= "Статус: "
         %td= "#{@ticket.status.name}"
       %tr
-        %td.tdname
-          %strong= "Команда: "
-        %td= "#{@ticket.team.name}"
+        - unless @ticket.team_id.blank?
+          %td.tdname
+            %strong= "Команда: "
+          %td= "#{@ticket.team.name}"
       %tr
-        %td.tdname
-          %strong= "Исполнитель: "
-        %td= "#{@ticket.user.full_name}"
+        - unless @ticket.user_id.blank?
+          %td.tdname
+            %strong= "Исполнитель: "
+          %td= "#{@ticket.user.full_name}"
       %tr
         %td.tdname
           %strong= "Содержание: "
