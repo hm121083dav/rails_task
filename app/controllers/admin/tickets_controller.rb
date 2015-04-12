@@ -20,12 +20,11 @@ class Admin::TicketsController < ApplicationController
     ticket = Ticket.find_by_id(params[:ticket_id])
     #если все успешно
     begin
-     #Обновляем свойства тикета (Статус заявки, специалиста), сохраняем в БД
-      ticket.update_attributes(status_id: ticket_params['status_id'], user_id: ticket_params['user_id'])
-
       #Проверяем не были ли переданы те же параметры, которые уже есть  у тикета
       #Для этого сравниваем передаваемые с формы параметры с текущими параметрами тикета
-      if ticket.user_id!=ticket_params['user_id'].to_i and ticket.status_id!=ticket_params['status_id'].to_i
+      if not ticket_params['solution_description'].blank? or (ticket.user_id!=ticket_params['user_id'].to_i or ticket.status_id!=ticket_params['status_id'].to_i)
+        #Обновляем свойства тикета (Статус заявки, специалиста), сохраняем в БД
+        ticket.update_attributes(status_id: ticket_params['status_id'], user_id: ticket_params['user_id'])
         #Создаем обьект Лог (журнала), Привсваевамем свойствам из формы и сохраняем.(запись в лог)
         log = Log.new
         log.ticket_id= params[:ticket_id]
