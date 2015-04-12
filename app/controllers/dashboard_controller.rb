@@ -27,7 +27,7 @@ class DashboardController < ApplicationController
     #Присваеваем заявке статус Новой заявки (id=1)
     @tickets.status_id=1
     #Создаем свойства имя уникального тикета - заявки (Короткое имя - рандом значение)
-    @tickets.ticket_name="#{@teams.find(form_params['team_id'])[:short_name]}-#{SecureRandom.hex}" if form_params['team_id']
+    @tickets.ticket_name="#{@teams.find(form_params['team_id'])[:short_name]}-#{SecureRandom.hex}" unless form_params['team_id'].blank?
 
     #Выбор в каком формате выводить вьюшку
     respond_to do |format|

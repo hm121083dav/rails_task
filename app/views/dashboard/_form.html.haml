@@ -1,10 +1,11 @@
 .panel-body
   = form_for @tickets, html: {class: 'form-horizontal', role: 'form'} do |f|
     - if @tickets.errors.any?
-      %h2= 'Ошибки при заполнении формы. Заявка не может быть создана.'
+      %h4= 'Ошибки при заполнении формы. Заявка не может быть создана. Пожалуйста, исправьте ошибки и повторите подачу заявки'
       %ul
-        - @tickets.errors.full_messages.each do |msg|
-          %li= msg
+        - @tickets.errors.each_with_index do |msg,i|
+          - unless msg[0].to_s=='ticket_name'
+            %li= @tickets.errors.full_messages[i]
 
     .form-group.field
       = f.label :customer_name, 'Имя:'

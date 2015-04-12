@@ -20,18 +20,12 @@ class Admin::TicketsController < ApplicationController
     ticket = Ticket.find_by_id(params[:ticket_id])
     #если все успешно
     begin
-     #Оновляем свойства тикета (Статус заявки, специалиста), сохраняем в БД
+     #Обновляем свойства тикета (Статус заявки, специалиста), сохраняем в БД
       ticket.update_attributes(status_id: ticket_params['status_id'], user_id: ticket_params['user_id'])
 
       #Проверяем не были ли переданы те же параметры, которые уже есть  у тикета
-      #Для этого сравниваем передаваемые с формы параметры с параметрами последней записи журнала для этого тикета
-      p '================>'
-      p last_log_line = Log.where('ticket_id = ?',params[:ticket_id]).last
-      p '================>'
-      # last_log_line = last_log_line.where('status_id = ?',params[:status_id])
-      # last_log_line = last_log_line.where('assigned_id = ?',params[:user_id])
-      # last_log_line = last_log_line.order('id DESC','id').last
-      if last_log_line.blank? or (last_log_line.status_id != ticket_params['status_id'] or last_log_line.assigned_id != ticket_params['user_id'])
+      #Для этого сравниваем передаваемые с формы параметры с текущими параметрами тикета
+      if ticket.user_id!=ticket_params['user_id'].to_i and ticket.status_id!=ticket_params['status_id'].to_i
         #Создаем обьект Лог (журнала), Привсваевамем свойствам из формы и сохраняем.(запись в лог)
         log = Log.new
         log.ticket_id= params[:ticket_id]
